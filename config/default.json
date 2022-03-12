@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://Parkingapp:Ragu2904@parking.xztmp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret":"mysecrettoken"
+}
