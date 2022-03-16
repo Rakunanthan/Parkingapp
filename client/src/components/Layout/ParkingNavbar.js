@@ -10,8 +10,7 @@ const Navbar = () => {
       </Link>
     </h1>
     <ul>
-      <li><Link to="/Adminlogin"> Admin</Link></li>
-      <li><Link to="/OwnerLanding">Parking Owners</Link></li>
+  
       <li><Link to ="/Register">Register</Link></li>
       <li><Link to="/Login">SignIn</Link></li>
     </ul>

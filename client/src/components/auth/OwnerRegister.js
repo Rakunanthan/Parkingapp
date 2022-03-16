@@ -4,7 +4,6 @@ import { Link, Navigate } from 'react-router-dom';
 //import { setAlert } from '../../actions/alert';
 //import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
-import axios from 'axios'; 
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -23,29 +22,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
-    // } else {
-    //   register({ name, email, password });
-    // }
-    }else
-    {
-      const newUser={
-        name,
-        email,
-        password
-      }
-      try {
-        const config={
-          headers:{
-          'Content-type':'application/json'
-          }
-        }
-        const body=JSON.stringify(newUser);
-        const res=await axios.post('/api/users',body,config);
-        console.log(res.data); 
-      } catch (err) {
-        console.error(err.response.data)
-        
-      }
+    } else {
+      register({ name, email, password });
     }
   };
 
@@ -96,6 +74,20 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             value={password2}
             onChange={onChange}
           />
+        </div>
+        <div className="form-group">
+            <input
+              type="text"
+              placeholder="Desciption about your space"
+              name="desc"
+              />
+        </div>
+        <div className="form-group">
+            <input 
+                type="text"
+                placeholder='Available space'
+                name="quantity"
+                min="1" max="5"/>        
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
