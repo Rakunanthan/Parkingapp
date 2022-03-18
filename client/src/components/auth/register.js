@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link,Navigate} from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { PropTypes } from 'prop-types';
+import { register } from '../../actions/auth';
 
 import axios from 'axios'; 
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = ({ setAlert ,register,isAuthenticated}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,31 +23,31 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log('Passwords do not match');
-    // } else {
-    //   register({ name, email, password });
-    // }
-    }else
-    {
-      const newUser={
-        name,
-        email,
-        password
-      }
-      try {
-        const config={
-          headers:{
-          'Content-Type':'application/json'
-          }
-        }
-        const body=JSON.stringify(newUser);
-        const res=await axios.post('/api/users',body,config);
-        console.log(res.data); 
-      } catch (err) {
-        console.error(err.response.data)
-        
-      }
+      setAlert('Passwords do not match','danger');
+    } else {
+      register({ name, email, password });
     }
+    // }else
+    // {
+    //   const newUser={
+    //     name,
+    //     email,
+    //     password
+    //   }
+    //   try {
+    //     const config={
+    //       headers:{
+    //       'Content-Type':'application/json'
+    //       }
+    //     }
+    //     const body=JSON.stringify(newUser);
+    //     const res=await axios.post('/api/users',body,config);
+    //     console.log(res.data); 
+    //   } catch (err) {
+    //     console.error(err.response.data)
+        
+    //   }
+    // }
   };
 
   if (isAuthenticated) {
@@ -63,7 +67,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Name"
             name="name"
             value={name}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
           />
         </div>
         <div className="form-group">
@@ -72,7 +76,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Email Address"
             name="email"
             value={email}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
           />
           
         </div>
@@ -82,7 +86,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
           />
         </div>
         <div className="form-group">
@@ -91,7 +95,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
-            onChange={onChange}
+            onChange={e=>onChange(e)}
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -103,6 +107,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   );
 };
 
+Register.propTypes={
+  setAlert:PropTypes.func.isRequired,
+  register:PropTypes.func.isRequired,
+  isAuthenticated:PropTypes.bool 
 
+};
+const mapStateToProps=state=> ({
+  isAuthenticated:state.auth.isAuthenticated
+})
 
-export default Register;
+export default connect(mapStateToProps,{setAlert,register})(Register);
