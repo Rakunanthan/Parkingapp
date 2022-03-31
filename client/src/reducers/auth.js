@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import{
-    REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_FAIL,LOGIN_SUCESS,LOGOUT
+    REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_FAIL,LOGIN_SUCCESS,LOGOUT
 }from '../actions/types';
 
 const initialState={
@@ -24,14 +24,14 @@ case USER_LOAD:{
 }
 
 case REGISTER_SUCESS:
-case LOGIN_SUCESS:
+case LOGIN_SUCCESS:
     localStorage.setItem('token',payload.token);
     return{
         ...state,
         ...payload,
         isAuthenticated:true,
         loading:false
-    }
+    } 
     case REGISTER_FAIL:
     case AUTH_ERR:
     case LOGIN_FAIL:

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_SUCESS,LOGIN_FAIL,LOGOUT} from './types';
+import { REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_SUCCESS ,LOGIN_FAIL,LOGOUT} from './types';
 import { setAlert } from './alert';
 import setauthtoken from '../utils/setauthtoken';
 //LOAD USER
@@ -20,7 +20,7 @@ export const loaduser=()=> async dispatch =>{
     }
 }
 
-//REgister the users
+//Register the users
 export const register=({name,email,password})=>async dispatch=>
 {
 const config ={
@@ -67,9 +67,10 @@ try {
     const res=await axios.post('/api/auth',body,config);
 
     dispatch({
-        type:LOGIN_SUCESS,
+        type:LOGIN_SUCCESS,
         payload:res.data
     });
+    dispatch (loaduser());
 } catch (err) {
     const errors=err.response.data.errors;
 

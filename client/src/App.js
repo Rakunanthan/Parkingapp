@@ -4,7 +4,7 @@ import store from './store';
 import Alert from './components/Layout/Alert'
 import Navbar from './components/Layout/Navbar';
 import ParkingNavbar from './components/Layout/ParkingNavbar'
-import Dashboard from './components/Dashboard/dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
 import  Landing  from './components/Layout/Landing';
 import OwnerLanding from './components/Layout/OwnerLanding';
@@ -15,8 +15,8 @@ import Adminlogin from './components/auth/Adminlogin'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { loaduser } from './actions/auth';
 import setauthtoken from './utils/setauthtoken';
-import PrivateRoute from './components/Routing/Privareroute';
-
+import PrivateRoute from './components/Routing/Privateroute';
+  
 if(localStorage.token)
      {
         setauthtoken(localStorage.token);
@@ -40,9 +40,16 @@ return (
  <Route path='/Adminlogin' element={<Adminlogin/>}/>
  <Route path='/Register' element={<Register/>}/>
  <Route path="/Login" element={<Login/>}/>
- <Route element={<PrivateRoute />}>
- <Route path="/dashboard" element={<Dashboard/>}/>
-</Route>
+ <Route path='/Dashboard' element={<Dashboard/>}
+ /* <Route
+  path="/Dashboard"
+  element={
+    <PrivateRoute>
+      <Dashboard />
+    </PrivateRoute> */
+  
+/>
+
 </Routes>
 </Fragment>
 </Router>
