@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React ,{Fragment, useEffect} from 'react'
 import { Link } from 'react-router-dom'
  import PropTypes from 'prop-types'
@@ -38,3 +39,31 @@ import { Link } from 'react-router-dom'
  });
  
  export default connect(mapStateToProps,{getCurrentProfile})(Dashboard);  
+=======
+import React,{useEffect} from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getCurrentProfile } from '../../actions/profile'
+
+const Dashboard = ({getCurrentProfile,auth,profile})=> {
+   useEffect(()=>{
+       getCurrentProfile();
+   },[]);
+
+  return (
+    <div>dashboard</div>
+  )
+}
+
+Dashboard.propTypes = {
+    getCurrentProfile:PropTypes.func.isRequired,
+    auth:PropTypes.object.isRequired,
+    profile:PropTypes.object.isRequired
+}
+const mapStateProps=state=>({
+    auth:state.auth,
+    profile:state.profile
+})
+
+export default connect(mapStateProps,{getCurrentProfile})(Dashboard)
+>>>>>>> bb42394725417005e497b9e5cf62b95c5b2ba248
