@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import { REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_SUCCESS ,LOGIN_FAIL,LOGOUT} from './types';
 import { setAlert } from './alert';
@@ -91,4 +92,5 @@ dispatch(
 export const logout=()=>dispatch=>
 {
     dispatch({type:LOGOUT});
+
 }

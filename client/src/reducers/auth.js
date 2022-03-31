@@ -1,7 +1,6 @@
-/* eslint-disable import/no-anonymous-default-export */
 import{
     REGISTER_SUCESS,REGISTER_FAIL,USER_LOAD,AUTH_ERR,LOGIN_FAIL,LOGIN_SUCCESS,LOGOUT
-}from '../actions/types';
+} from '../actions/types';
 
 const initialState={
     token:localStorage.getItem('token'),
@@ -10,6 +9,7 @@ const initialState={
     user:null
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function(state=initialState,action){
 const{type,payload}=action;
     switch(type)

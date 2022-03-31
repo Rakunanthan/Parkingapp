@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Link } from 'react-router-dom';
 
@@ -19,5 +20,6 @@ List your space for free, setting your pricing, preferences and when the space i
 </section>
 )
 }
+
 
 export default Landing;

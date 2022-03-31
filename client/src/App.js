@@ -9,8 +9,8 @@ import './App.css';
 import  Landing  from './components/Layout/Landing';
 import OwnerLanding from './components/Layout/OwnerLanding';
 import OwnerRegister from './components/auth/OwnerRegister'
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+import Register from './components/auth/register';
+import Login from './components/auth/login';
 import Adminlogin from './components/auth/Adminlogin'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { loaduser } from './actions/auth';
