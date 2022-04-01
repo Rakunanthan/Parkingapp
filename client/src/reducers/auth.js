@@ -25,6 +25,7 @@ case USER_LOAD:{
 
 case REGISTER_SUCESS:
 case LOGIN_SUCCESS:
+    console.log("1")
     localStorage.setItem('token',payload.token);
     return{
         ...state,
@@ -36,6 +37,7 @@ case LOGIN_SUCCESS:
     case AUTH_ERR:
     case LOGIN_FAIL:
     case LOGOUT:
+        console.log("2")
         localStorage.removeItem('token');
         return{
             ...state,

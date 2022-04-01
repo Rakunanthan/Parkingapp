@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
  import { connect } from 'react-redux'
  import Spinner from '../Layout/Spinner'
  import {getCurrentProfile } from '../../actions/profile'
+ import DashboardActions from './DashboardActions'
 
  
  const Dashboard = ({getCurrentProfile,auth:{user},profile:{profile,loading}}) => {
@@ -18,8 +19,9 @@ import { Link } from 'react-router-dom'
      </p>
     {profile !==null ? <Fragment>This User has Profile</Fragment>: <Fragment>
      <p>Still not have created parking space</p>
-     <Link to ='/Createprofile' className="btn btn-primary my-1"></Link>
-     create
+     <Link to="/Createprofile" className="btn btn-primary my-1">
+            Create Profile
+          </Link>
    </Fragment>
  }
  </Fragment>
