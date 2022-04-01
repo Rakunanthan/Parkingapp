@@ -9,8 +9,6 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-
-  
   "author": "Rakunanthan",
   "license": "MIT",
   "dependencies": {
@@ -21,6 +19,8 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.6",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
@@ -28,8 +28,3 @@
     "nodemon": "^2.0.15"
   }
 }
-  
-
-
-
-

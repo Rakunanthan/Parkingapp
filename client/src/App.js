@@ -15,6 +15,7 @@ import Adminlogin from './components/auth/Adminlogin'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { loaduser } from './actions/auth';
 import setauthtoken from './utils/setauthtoken';
+import Createprofile from './components/profile-forms/Createprofile';
 import PrivateRoute from './components/Routing/Privateroute';
   
 if(localStorage.token)
@@ -40,16 +41,24 @@ return (
  <Route path='/Adminlogin' element={<Adminlogin/>}/>
  <Route path='/Register' element={<Register/>}/>
  <Route path="/Login" element={<Login/>}/>
- <Route path='/Dashboard' element={<Dashboard/>}
- /* <Route
+ <Route
+            path="dashboard"
+            element={<PrivateRoute component={Dashboard} />}
+          />
+            <Route
+            path="Createprofile"
+            element={<PrivateRoute component={Createprofile} />}
+          />
+
+ {/* <Route path='/Dashboard' element={<Dashboard/>}/>
+ <Route path ='/Createprofile' element={<Createprofile/>}/> */}
+ {/* <Route
   path="/Dashboard"
   element={
     <PrivateRoute>
       <Dashboard />
-    </PrivateRoute> */
-  
-/>
-
+      <Createprofile/>
+    </PrivateRoute>}/> */}
 </Routes>
 </Fragment>
 </Router>
