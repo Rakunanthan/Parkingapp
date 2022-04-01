@@ -1,19 +1,30 @@
-import React ,{Fragment, useState} from 'react'
+import React ,{Fragment, useState,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {createProfile} from '../../actions/profile'
+import {createProfile,getCurrentProfile } from '../../actions/profile'
 import {Link,useNavigate} from 'react-router-dom'
 
 
 
 
-const Createprofile = ({createProfile,history}) => {
+const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile,history}) => {
     const [formData,setFormData] = useState({
         location: '',
         desc:'',
         postcode:'',
         phnno:''
     });
+
+    useEffect(()=>{
+        getCurrentProfile();
+        setFormData({
+            location: loading || !profile.location ? '':profile.loaction,
+            desc:loading || !profile.desc ? '':profile.desc,
+             postcode:loading || !profile.postcode ? '':profile.postcode,
+            phnno:loading || !profile.phnno ? '':profile.phnno
+        });
+         
+    },[loading]);
     const {
         location,
         desc,
@@ -72,13 +83,12 @@ const Createprofile = ({createProfile,history}) => {
   }
 
 
-Createprofile.propTypes =  {
-  createProfile:PropTypes.func.isRequired
+EditProfile.propTypes =  {
+  createProfile:PropTypes.func.isRequired,
+  getCurrentProfile:PropTypes.func.isRequired,
+  profile:PropTypes.object.isRequired
 }
-
-{/* export default connect({createProfile}); */}
-
 const mapStateToProps=state=>({
     profile:state.profile
 });
-export default connect(mapStateToProps,{createProfile})(Createprofile);
+export default connect(mapStateToProps,{createProfile,getCurrentProfile})(EditProfile);

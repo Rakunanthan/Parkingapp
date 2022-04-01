@@ -6,7 +6,7 @@ import { GET_PROFILE,PROFILE_ERR } from "./types";
 export const getCurrentProfile=()=>async dispatch=>
 {
   try {
-      const res=await axios.get('/api/profile/me');
+      const res=await axios.get('http://localhost:4000/api/profile/me');
       dispatch ({
           type:GET_PROFILE,
           payload:res.data
@@ -32,7 +32,7 @@ export const createProfile=(formData,history,edit=false)=>async dispatch=>
             }
 
         }
-        const res= await axios.post('/api/profile',formData,config);
+        const res= await axios.post('http://localhost:4000/api/profile',formData,config);
         dispatch ({
             type:GET_PROFILE,
             payload:res.data

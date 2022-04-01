@@ -12,19 +12,30 @@ import { Link } from 'react-router-dom'
    useEffect(()=>{
      getCurrentProfile();
    },[]);
-   return loading && profile ===null ? <Spinner/> : <Fragment>
+   return loading && profile ===null ? <Spinner/> :
+   <div style={{
+     "margin-top":"100px"
+
+   }}>
+   
+   
+   <Fragment>
      <h1 className='large text-primary'>Dashboard </h1>
      <p className='lead'>
        <i className='fas fa-user'></i> welcome {user && user.name}
      </p>
-    {profile !==null ? <Fragment>This User has Profile</Fragment>: <Fragment>
+    {profile !==null ? (<Fragment>
+      <DashboardActions/>
+    </Fragment>) : (<Fragment>
      <p>Still not have created parking space</p>
+     
      <Link to="/Createprofile" className="btn btn-primary my-1">
             Create Profile
           </Link>
-   </Fragment>
+   </Fragment>)
  }
  </Fragment>
+ </div>
  }
 
  

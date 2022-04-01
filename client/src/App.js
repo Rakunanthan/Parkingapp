@@ -16,6 +16,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { loaduser } from './actions/auth';
 import setauthtoken from './utils/setauthtoken';
 import Createprofile from './components/profile-forms/Createprofile';
+import EditProfile from './components/profile-forms/EditProfile';
 import PrivateRoute from './components/Routing/Privateroute';
   
 if(localStorage.token)
@@ -49,6 +50,11 @@ return (
             path="Createprofile"
             element={<PrivateRoute component={Createprofile} />}
           />
+           <Route
+            path="EditProfile"
+            element={<PrivateRoute component={EditProfile} />}
+          />
+
 
  {/* <Route path='/Dashboard' element={<Dashboard/>}/>
  <Route path ='/Createprofile' element={<Createprofile/>}/> */}
