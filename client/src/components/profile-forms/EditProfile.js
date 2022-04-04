@@ -12,7 +12,8 @@ const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile,
         location: '',
         desc:'',
         postcode:'',
-        phnno:''
+        phnno:'',
+        date:''
     });
 
     useEffect(()=>{
@@ -21,10 +22,10 @@ const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile,
             location: loading || !profile.location ? '':profile.loaction,
             desc:loading || !profile.desc ? '':profile.desc,
              postcode:loading || !profile.postcode ? '':profile.postcode,
-            phnno:loading || !profile.phnno ? '':profile.phnno
+            phnno:loading || !profile.phnno ? '':profile.phnno|| !profile.date ? '':profile.date
         });
          
-    },[loading]);
+    },[ ]);
     const {
         location,
         desc,
@@ -33,12 +34,17 @@ const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile,
     }=formData;
     
     const navigate =useNavigate();
+    const onChange= (e)=>setFormData({...formData,[e.target.name]:[e.target.value]});
 
     const onSubmit = (e) => {
       e.preventDefault();
       createProfile(formData, navigate? true : false);
     };
   return (
+    <div style={{
+      "margin-top":"75px"
+ 
+    }}>
     <Fragment>
         <h1 className="large text-primary">
         Create Your Profile
@@ -47,38 +53,61 @@ const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile,
         <i className="fas fa-user"></i> Enter your Parking space details
       </p>
     
-      <form className="form" onSubmit={e=>onSubmit(e)}>
+      <form className="form" onSubmit={onSubmit}>
+        < div className="form-group"/>
         <div className="form-group">
+          <select name="option"  onChange={onChange}>
+            <option>Select Parking Type</option>
+            <option value="Private House">Private House</option>
+            <option value="Cottage">Cottage</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Warehouse">Warehouse</option>
+            <option value="Commercial parking space">Commercial parking space</option>
+
+            <option value="Other">Other</option>
+          </select>
+          <small className="form-text">
+            Give us an idea of what type of place it is.
+          </small>
+        </div> 
     
-        </div>    
+         
         <div className="form-group">
-          <input type="text" placeholder="Location" name="location" />
+          <input type="text" placeholder="Location" name="location" value={location} onChange={onChange}/>
           <small className="form-text"
             >City & State</small
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Decription about your space" name="desc" />
+        <textarea
+            placeholder="A short description about your place"
+            name="desc"
+            value={desc}
+            onChange={onChange}
+          />
           <small className="form-text"
             >Describe your Space</small
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Mobile number" name="phnno" />
+          <input type="text" placeholder="Mobile number" name="phnno" value={phnno} onChange={onChange}/>
           <small className="form-text"
             >Mobile Number</small
           >
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Postcode" name="postcode" />
+          <input type="text" placeholder="Postcode" name="postcode" value={postcode} onChange={onChange}/>
           <small className="form-text"
             >Parking space postcode</small
           >
        </div>
         <input type="submit" className="btn btn-primary my-1" />
-        <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
+        <Link to="/Dashboard" className="btn btn-primary my-1">
+            Go Back
+          </Link>
       </form>
     </Fragment>
+    </div>
   )
   }
 

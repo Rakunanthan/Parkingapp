@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
-// bring in normalize to give us a proper url, regardless of what user entered
+
 const normalize = require('normalize-url');
 //const checkObjectId = require('../../middleware/checkObjectId');
 
@@ -38,14 +38,16 @@ router.get('/me', auth, async (req, res) => {
 router.post('/',[
   auth,[
   check('postcode', 'Postcode is required').notEmpty(),
-  check('phnno', 'Phone number is required').notEmpty(),],], 
+  check('phnno', 'Phone number is required').notEmpty(),
+  // check('date','Date is Required').notEmpty(),
+  ],], 
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     const {
- location,desc,adress,postcode,phnno
+ location,desc,adress,postcode,phnno,date
     }=req.body;
      
      const profileFields={};
@@ -55,6 +57,7 @@ router.post('/',[
      if(adress) profileFields.adress=adress;
      if(postcode) profileFields.postcode=postcode;
      if(phnno) profileFields.phnno=phnno;
+     //if(date) profileFields.date=date;
 
 
   

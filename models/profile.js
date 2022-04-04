@@ -6,13 +6,16 @@ const ProfileSchema = new mongoose.Schema({
     ref: 'user'
   },
   location: {
-    type: String
+    type: String,
+    required:true
   },
   desc: {
-    type: String
+    type: String,
+    required:true
   },
   adress: {
-    type: String
+    type: String,
+    
   },
   postcode: {
     type: String,
@@ -22,16 +25,11 @@ const ProfileSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
- 
-
-  
- 
-  
-  
   date: {
     type: Date,
-    default: Date.now
+    default:Date.now
   }
+  
 });
 
 module.exports = mongoose.model('profile', ProfileSchema);

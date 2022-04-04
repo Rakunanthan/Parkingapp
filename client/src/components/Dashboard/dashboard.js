@@ -27,10 +27,10 @@ import { Link } from 'react-router-dom'
     {profile !==null ? (<Fragment>
       <DashboardActions/>
     </Fragment>) : (<Fragment>
-     <p>Still not have created parking space</p>
+     <p>Still You have not created any parking space</p>
      
      <Link to="/Createprofile" className="btn btn-primary my-1">
-            Create Profile
+            Register your Parking Space
           </Link>
    </Fragment>)
  }

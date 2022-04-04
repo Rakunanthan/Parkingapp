@@ -45,7 +45,7 @@ async(req,res) =>{
 
      if(!isMatch)
      {
-         return res.status(400).json({errors:[{msg:"Invalis credentials "}]})
+         return res.status(400).json({errors:[{msg:"Invalid credentials "}]})
      }
 
     

@@ -9,6 +9,7 @@ import './App.css';
 import  Landing  from './components/Layout/Landing';
 import OwnerLanding from './components/Layout/OwnerLanding';
 import OwnerRegister from './components/auth/OwnerRegister'
+import Ownerlogin from './components/auth/Ownerlogin';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
 import Adminlogin from './components/auth/Adminlogin'
@@ -17,6 +18,7 @@ import { loaduser } from './actions/auth';
 import setauthtoken from './utils/setauthtoken';
 import Createprofile from './components/profile-forms/Createprofile';
 import EditProfile from './components/profile-forms/EditProfile';
+//import  Addnewspace  from './components/profile-forms/Addnewspace'
 import PrivateRoute from './components/Routing/Privateroute';
   
 if(localStorage.token)
@@ -39,6 +41,7 @@ return (
  <Route path='/ParkingNavbar' element={<ParkingNavbar/>}/>
  <Route path='/OwnerLanding' element={<OwnerLanding/>}/>
  <Route path='/OwnerRegister' element={<OwnerRegister/>}/>
+ <Route path='/Ownerlogin' element={<Ownerlogin/>}/>
  <Route path='/Adminlogin' element={<Adminlogin/>}/>
  <Route path='/Register' element={<Register/>}/>
  <Route path="/Login" element={<Login/>}/>
@@ -54,7 +57,7 @@ return (
             path="EditProfile"
             element={<PrivateRoute component={EditProfile} />}
           />
-
+          
 
  {/* <Route path='/Dashboard' element={<Dashboard/>}/>
  <Route path ='/Createprofile' element={<Createprofile/>}/> */}

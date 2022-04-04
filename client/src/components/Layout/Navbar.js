@@ -1,12 +1,20 @@
 
 import React,{Fragment} from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { logout } from '../../actions/auth';
+//import { logout } from '../../actions/auth';
+import { LOGOUT } from '../../actions/types';
 
 
-const Navbar = ({auth: {isAuthenticated,loading},logout}) => {
+
+const Navbar = ({auth: {isAuthenticated,loading}}) => {
+  //const navigate=useNavigate();
+  function logout()
+  {
+    window.localStorage.removeItem('token');
+     window.location.href='/login';
+   }
   const authLinks=(
     <ul>
       <li>
@@ -45,5 +53,4 @@ Navbar.propTypes={
 const mapStateToProps =state=>({
   auth:state.auth
 })
-
-export default connect(mapStateToProps,{logout}) (Navbar);
+export default connect(mapStateToProps)(Navbar);

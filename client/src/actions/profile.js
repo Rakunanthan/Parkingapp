@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_PROFILE,PROFILE_ERR } from "./types";
+import { GET_PROFILE,PROFILE_ERR,UPDATE_PROFILE} from "./types";
 
 
 export const getCurrentProfile=()=>async dispatch=>
@@ -19,10 +19,10 @@ export const getCurrentProfile=()=>async dispatch=>
   }
 }
 
-// Create profile
+// Create profile or update profile
 
 
-export const createProfile=(formData,history,edit=false)=>async dispatch=>
+export const createProfile=(formData,navigate,edit=false)=>async dispatch=>
 {
     try {
         const config=
@@ -37,9 +37,9 @@ export const createProfile=(formData,history,edit=false)=>async dispatch=>
             type:GET_PROFILE,
             payload:res.data
         });
-        dispatch(setAlert(edit ? 'profile updated':'profile created','sucess'));
+        dispatch(setAlert(edit ? 'profile updated':'Profile created','success'));
         if(!edit){
-            history.push('/Dashboard');
+            navigate('/Dashboard');
         }
     } catch (err) {
         const errors=err.response.data.errors;
@@ -52,4 +52,37 @@ export const createProfile=(formData,history,edit=false)=>async dispatch=>
             payload:{msg:err.response.statusText,status:err.response.status}
         }); 
     }
+}
+
+//ADD New space
+export const addnewspace=(formData,navigate)=>async dispatch=>
+{
+    try {
+        const config=
+        {
+            headers:{
+                'Content-Type':'application/json'
+            }
+
+        }
+        const res= await axios.put('http://localhost:4000/api/profile/newspace',formData,config);
+        dispatch ({
+            type:UPDATE_PROFILE,
+            payload:res.data
+        });
+        dispatch(setAlert('NEW SPACE ADDED','success'));
+       
+            navigate('/Dashboard');
+        
+    } catch (err) {
+        const errors=err.response.data.errors;
+
+    if(errors){
+        errors.forEach(error=>dispatch(setAlert(error.msg,'danger')))
+    }
+        dispatch ({
+            type:PROFILE_ERR,
+            payload:{msg:err.response.statusText,status:err.response.status}
+        }); 
+    }   
 }

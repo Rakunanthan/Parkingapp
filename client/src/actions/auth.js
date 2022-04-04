@@ -63,10 +63,10 @@ const config ={
     }
 }
 const body =JSON.stringify({email,password});
-
+console.log("1");
 try {
     const res=await axios.post('http://localhost:4000/api/auth',body,config);
-
+    console.log(res.data);
     dispatch({
         type:LOGIN_SUCCESS,
         payload:res.data
@@ -89,5 +89,5 @@ dispatch(
 
 //LOGOUT
 
-export const logout=()=>({type:LOGOUT});
+export const logout=()=>dispatch=>dispatch({type:LOGOUT});
 

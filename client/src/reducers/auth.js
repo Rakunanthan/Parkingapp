@@ -25,7 +25,7 @@ case USER_LOAD:{
 
 case REGISTER_SUCESS:
 case LOGIN_SUCCESS:
-    {
+
     console.log("1")
     localStorage.setItem('token',payload.token);
     return{
@@ -33,19 +33,12 @@ case LOGIN_SUCCESS:
         ...payload,
         isAuthenticated:true,
         loading:false
-    } 
-}
+    
+};
     case REGISTER_FAIL:
     case AUTH_ERR:
     case LOGIN_FAIL:
-        localStorage.removeItem('token');
-        return{
-            ...state,
-            token:null,
-            isAuthenticated:false,
-            loading:false
-        }
-    case LOGOUT:
+   
         
          localStorage.removeItem('token');
         return{
@@ -53,8 +46,16 @@ case LOGIN_SUCCESS:
             token:null,
             isAuthenticated:false,
             loading:false
-        }
-    
+        };
+    case LOGOUT:
+        
+            localStorage.removeItem('token');
+           return{
+               ...state,
+               token:null,
+               isAuthenticated:false,
+               loading:false
+           };
     default:
         return state;
 }
