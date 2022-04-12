@@ -14,6 +14,13 @@ const Register = ({ setAlert ,register,isAuthenticated}) => {
     password: '',
     password2: ''
   });
+  // const sendEmail=(e)=>{
+  //   e.preventDefault();
+  //   emailjs.sendForm('service_f9ya23u','service_f9ya23u',e.target,'eU6a3hfT6NrMsvYa')
+  //   .then(res=>{
+  //     console.log(res);
+  //   }).catch(err=>console.log(err))
+  // }
 
   const { name, email, password, password2 } = formData;
 

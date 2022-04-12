@@ -4,7 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 //import { setAlert } from '../../actions/alert';
 //import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
-
+import emailjs from 'emailjs-com';
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,17 +15,30 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const { name, email, password, password2 } = formData;
 
+  
+  // const sendEmail=(e)=>{
+  //   e.preventDefault();
+  //   emailjs.sendForm('service_f9ya23u','service_f9ya23u',e.target,'eU6a3hfT6NrMsvYa')
+  //   .then(res=>{
+  //     console.log(res);
+  //   }).catch(err=>console.log(err))
+  // }
+
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
-    } else {
-      register({ name, email, password });
-    }
-  };
+
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      if (password !== password2) {
+        setAlert('Passwords do not match', 'danger');
+      } else {
+        register({ name, email, password });
+      }
+    };
+
+  
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;

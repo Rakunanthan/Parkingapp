@@ -18,6 +18,7 @@ import { loaduser } from './actions/auth';
 import setauthtoken from './utils/setauthtoken';
 import Createprofile from './components/profile-forms/Createprofile';
 import EditProfile from './components/profile-forms/EditProfile';
+import Profiles from './components/profiles/Profiles';
 //import  Addnewspace  from './components/profile-forms/Addnewspace'
 import PrivateRoute from './components/Routing/Privateroute';
   
@@ -45,6 +46,8 @@ return (
  <Route path='/Adminlogin' element={<Adminlogin/>}/>
  <Route path='/Register' element={<Register/>}/>
  <Route path="/Login" element={<Login/>}/>
+ <Route path='/Profiles' element={<Profiles/>}/>
+
  <Route
             path="dashboard"
             element={<PrivateRoute component={Dashboard} />}
